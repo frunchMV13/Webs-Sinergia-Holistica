@@ -400,8 +400,10 @@ img, svg{ display: block; max-width: 100%; }
 }
 .section-intro{ font-size: 1.02rem; }
 
-/* reveal-on-scroll */
-.reveal{
+/* reveal-on-scroll
+   Se oculta solo si el JS está activo (.js en <html>): si el JS falla,
+   todo el contenido sigue siendo visible y legible. */
+.js .reveal{
   opacity: 0;
   transform: translateY(24px);
   transition: opacity .8s var(--ease), transform .8s var(--ease);

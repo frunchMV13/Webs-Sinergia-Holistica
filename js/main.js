@@ -1,6 +1,9 @@
 (function(){
   'use strict';
 
+  /* ---------- Marca de JS activo (habilita las animaciones de entrada) ---------- */
+  document.documentElement.classList.add('js');
+
   /* ---------- Año en footer ---------- */
   var yearEl = document.getElementById('year');
   if(yearEl) yearEl.textContent = new Date().getFullYear();
