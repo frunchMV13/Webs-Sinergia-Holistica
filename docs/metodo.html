@@ -1,0 +1,829 @@
+<meta charset="utf-8">
+<title>Método Sinergia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   MÉTODO SINERGIA — documento de proceso
+   Diseño comprometido con la identidad de marca: base oscura.
+   Todos los colores se pintan explícitamente.
+   ========================================================= */
+:root{
+  --ground:      #05040c;
+  --surface:     #0e0b22;
+  --surface-2:   #151030;
+  --line:        #262046;
+  --line-soft:   #1c1738;
+
+  --ink:         #ece9f7;
+  --ink-soft:    #b6b0d4;
+  --ink-mute:    #837da6;
+
+  --gold:        #d9b45c;
+  --gold-bright: #f0cf82;
+  --cyan:        #35d6c8;
+  --violet:      #8a4fd6;
+  --rose:        #e0899b;
+
+  --display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body: 'Jost', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --measure: 68ch;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- layout ---------- */
+.shell{
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 3.5rem;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 3rem 1.75rem 6rem;
+  align-items: start;
+}
+
+.index{
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  border-left: 1px solid var(--line);
+  padding-left: 1rem;
+}
+.index-label{
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .8rem;
+}
+.index a{
+  color: var(--ink-mute);
+  text-decoration: none;
+  font-size: .87rem;
+  padding: .28rem 0;
+  transition: color .2s ease;
+  display: flex;
+  gap: .55rem;
+}
+.index a:hover, .index a:focus-visible{ color: var(--gold-bright); }
+.index a b{ color: var(--ink-mute); font-weight: 400; font-variant-numeric: tabular-nums; }
+
+.doc{ min-width: 0; }
+
+/* ---------- cabecera ---------- */
+.masthead{
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+.eyebrow{
+  font-size: .7rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0 0 .9rem;
+}
+h1{
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 .6rem;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.standfirst{
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.22rem;
+  color: var(--gold-bright);
+  margin: 0 0 1.4rem;
+  max-width: var(--measure);
+}
+.meta{
+  font-size: .8rem;
+  color: var(--ink-mute);
+  margin: 0;
+  font-family: var(--mono);
+}
+
+/* ---------- secciones ---------- */
+section{
+  margin: 0 0 3.5rem;
+  scroll-margin-top: 1.5rem;
+}
+h2{
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.85rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+  text-wrap: balance;
+}
+h2 .n{
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--gold);
+  letter-spacing: .1em;
+  flex: 0 0 auto;
+  padding-top: .35rem;
+}
+h3{
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: .01em;
+  color: var(--gold-bright);
+  margin: 2rem 0 .6rem;
+}
+p{ margin: 0 0 1rem; color: var(--ink-soft); max-width: var(--measure); }
+strong{ color: var(--ink); font-weight: 500; }
+a{ color: var(--cyan); }
+
+code{
+  font-family: var(--mono);
+  font-size: .84em;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  padding: .1em .4em;
+  color: var(--gold-bright);
+}
+pre{
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  overflow-x: auto;
+  margin: 0 0 1.2rem;
+}
+pre code{
+  background: none; border: none; padding: 0;
+  color: var(--ink-soft);
+  font-size: .82rem;
+  line-height: 1.65;
+}
+pre code .c{ color: var(--gold); }
+pre code .d{ color: var(--ink-mute); }
+
+/* ---------- llamada ---------- */
+.callout{
+  border-left: 2px solid var(--gold);
+  background: linear-gradient(90deg, rgba(217,180,92,.09), transparent 70%);
+  padding: 1.1rem 1.3rem;
+  margin: 0 0 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+.callout p:last-child{ margin-bottom: 0; }
+.callout.warn{
+  border-left-color: var(--rose);
+  background: linear-gradient(90deg, rgba(224,137,155,.1), transparent 70%);
+}
+.callout.key{
+  border-left-color: var(--cyan);
+  background: linear-gradient(90deg, rgba(53,214,200,.09), transparent 70%);
+}
+.callout-title{
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 .45rem;
+  font-weight: 500;
+}
+.callout.warn .callout-title{ color: var(--rose); }
+.callout.key .callout-title{ color: var(--cyan); }
+
+/* ---------- tablas ---------- */
+.scroll-x{ overflow-x: auto; margin: 0 0 1.4rem; }
+table{
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: .88rem;
+}
+th{
+  text-align: left;
+  font-weight: 500;
+  font-size: .7rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--line);
+  padding: 0 1rem .6rem 0;
+  vertical-align: bottom;
+}
+td{
+  padding: .75rem 1rem .75rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-soft);
+  vertical-align: top;
+}
+td:first-child{ color: var(--ink); }
+tr:last-child td{ border-bottom: none; }
+
+/* ---------- estados ---------- */
+.chip{
+  display: inline-block;
+  font-size: .68rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: .22em .6em;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.chip.ok{   background: rgba(53,214,200,.13); color: var(--cyan);       border: 1px solid rgba(53,214,200,.3); }
+.chip.wait{ background: rgba(217,180,92,.12); color: var(--gold-bright); border: 1px solid rgba(217,180,92,.3); }
+.chip.you{  background: rgba(138,79,214,.16); color: #c49bf0;            border: 1px solid rgba(138,79,214,.4); }
+.chip.none{ background: rgba(224,137,155,.1); color: var(--rose);        border: 1px solid rgba(224,137,155,.3); }
+
+/* ---------- listas ---------- */
+ul.plain{ list-style: none; margin: 0 0 1.3rem; padding: 0; display: flex; flex-direction: column; gap: .55rem; max-width: var(--measure); }
+ul.plain li{ position: relative; padding-left: 1.1rem; color: var(--ink-soft); }
+ul.plain li::before{
+  content: '';
+  position: absolute; left: 0; top: .68em;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ---------- checklist ---------- */
+.check{ list-style: none; margin: 0 0 1.3rem; padding: 0; display: flex; flex-direction: column; gap: .1rem; }
+.check li{ border-bottom: 1px solid var(--line-soft); }
+.check li:last-child{ border-bottom: none; }
+.check label{
+  display: flex;
+  gap: .8rem;
+  align-items: flex-start;
+  padding: .7rem .2rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+.check input{
+  appearance: none;
+  flex: 0 0 auto;
+  width: 17px; height: 17px;
+  margin-top: .28em;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  cursor: pointer;
+  position: relative;
+  transition: border-color .2s ease, background .2s ease;
+}
+.check input:hover{ border-color: var(--gold); }
+.check input:focus-visible{ outline: 2px solid var(--cyan); outline-offset: 2px; }
+.check input:checked{ background: var(--gold); border-color: var(--gold); }
+.check input:checked::after{
+  content: '';
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 4px; height: 9px;
+  border: solid #10061f;
+  border-width: 0 2px 2px 0;
+  transform: rotate(42deg);
+}
+.check input:checked + .check-text{ color: var(--ink-mute); text-decoration: line-through; text-decoration-color: var(--line); }
+.check-text{ transition: color .2s ease; }
+.check-text em{ font-style: normal; color: var(--ink-mute); font-size: .84rem; display: block; }
+
+/* ---------- rejilla de capas ---------- */
+.layers{ display: flex; flex-direction: column; gap: 0; margin: 0 0 1.5rem; }
+.layer{
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.layer:last-child{ border-bottom: none; }
+.layer-n{
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--gold);
+  padding-top: .2rem;
+}
+.layer-name{ color: var(--ink); font-weight: 500; margin: 0 0 .2rem; }
+.layer-desc{ margin: 0 0 .35rem; font-size: .92rem; }
+.layer-where{ font-family: var(--mono); font-size: .76rem; color: var(--ink-mute); margin: 0; }
+
+/* ---------- footer ---------- */
+.end{
+  border-top: 1px solid var(--line);
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  font-size: .78rem;
+  color: var(--ink-mute);
+  font-family: var(--mono);
+}
+.end p{ color: var(--ink-mute); font-size: .78rem; }
+
+::selection{ background: rgba(217,180,92,.3); color: #fff; }
+
+@media (max-width: 900px){
+  .shell{ grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.25rem 4rem; }
+  .index{
+    position: static;
+    border-left: none;
+    border-bottom: 1px solid var(--line);
+    padding-left: 0;
+    padding-bottom: 1.2rem;
+  }
+  h2{ font-size: 1.55rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition-duration: .01ms !important; }
+}
+</style>
+
+<div class="shell">
+
+<nav class="index" aria-label="Índice">
+  <p class="index-label">Índice</p>
+  <a href="#estado"><b>00</b> Dónde está cada cosa</a>
+  <a href="#capas"><b>01</b> Las cinco capas</a>
+  <a href="#anatomia"><b>02</b> Anatomía de la página</a>
+  <a href="#proceso"><b>03</b> El proceso, por fases</a>
+  <a href="#pendiente"><b>04</b> Qué falta hoy</a>
+  <a href="#ficha"><b>05</b> Ficha de encargo</a>
+  <a href="#ampliaciones"><b>06</b> Menú de ampliaciones</a>
+  <a href="#unificar"><b>07</b> Unificar sin duplicar</a>
+  <a href="#herramientas"><b>08</b> Las herramientas</a>
+  <a href="#siguiente"><b>09</b> Lo siguiente, en orden</a>
+</nav>
+
+<main class="doc">
+
+<header class="masthead">
+  <p class="eyebrow">Sinergia Holística · Documento de trabajo</p>
+  <h1>Método Sinergia</h1>
+  <p class="standfirst">Cómo se construye una de estas webs: las partes, lo que ya está, lo que falta, y lo que se le puede añadir.</p>
+  <p class="meta">Repositorio: Webs-Sinergia-Holistica · Rama: claude/sinergia-holistica-landing-j3012k · 5 septiembre 2026</p>
+</header>
+
+<!-- ============ 00 ============ -->
+<section id="estado">
+  <h2><span class="n">00</span> Dónde está cada cosa</h2>
+
+  <div class="callout warn">
+    <p class="callout-title">Hay dos versiones de la web y no son la misma</p>
+    <p>Tu versión tiene los <strong>tres audios grabados con tu voz</strong>. La versión de este repositorio no los tiene: se creó desde cero en esta sesión y contiene cuatro archivos, sin ningún audio ni vídeo.</p>
+  </div>
+
+  <p>No es un fallo de nadie: es lo que pasa cuando el mismo proyecto avanza en dos sitios a la vez. Pero mientras siga así, cada mejora que hagamos en un lado no existe en el otro. <strong>Consolidar las dos versiones en una sola es el paso cero</strong>, antes de añadir nada.</p>
+
+  <h3>Lo que hay en este repositorio, exactamente</h3>
+  <div class="scroll-x">
+  <table>
+    <thead><tr><th>Archivo</th><th>Qué contiene</th></tr></thead>
+    <tbody>
+      <tr><td><code>index.html</code></td><td>Las 10 secciones con los textos definitivos, el cosmograma en SVG, el SEO</td></tr>
+      <tr><td><code>css/styles.css</code></td><td>Paleta, tipografías, maquetación, animaciones, versión móvil</td></tr>
+      <tr><td><code>js/main.js</code></td><td>Menú, aparición al hacer scroll, campo de estrellas, reproductores, formulario</td></tr>
+      <tr><td><code>README.md</code></td><td>Instrucciones y lista de datos pendientes</td></tr>
+      <tr><td><span class="chip none">No existe</span></td><td>Carpeta de audios, carpeta de vídeos, imágenes</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <p class="callout-title">Qué necesito para consolidar</p>
+    <p>Los archivos de tu versión buena (la carpeta entera, con los audios). Cuando estén aquí, este repositorio pasa a ser <strong>la única fuente de verdad</strong> y se acabó el problema.</p>
+  </div>
+</section>
+
+<!-- ============ 01 ============ -->
+<section id="capas">
+  <h2><span class="n">01</span> Las cinco capas</h2>
+
+  <p>Ésta es la idea que hace que la web sea reutilizable. La página no es un bloque: son cinco capas apiladas, y al adaptarla para otra persona <strong>solo cambian tres de ellas</strong>.</p>
+
+  <div class="layers">
+    <div class="layer">
+      <div class="layer-n">01</div>
+      <div>
+        <p class="layer-name">Estructura <span class="chip ok">No cambia</span></p>
+        <p class="layer-desc">El esqueleto: qué secciones hay, en qué orden, cómo se comportan en móvil. Sirve igual para ti que para cualquier terapeuta.</p>
+        <p class="layer-where">index.html</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-n">02</div>
+      <div>
+        <p class="layer-name">Identidad <span class="chip wait">Cambia entera</span></p>
+        <p class="layer-desc">Paleta, tipografías, símbolo. Los colores están definidos como variables en un solo bloque: <strong>tocando ocho valores cambia la personalidad de toda la web</strong>, sin abrir nada más.</p>
+        <p class="layer-where">css/styles.css → bloque :root · el SVG del cosmograma</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-n">03</div>
+      <div>
+        <p class="layer-name">Contenido <span class="chip wait">Cambia entero</span></p>
+        <p class="layer-desc">Textos, audios, vídeos, foto, biografía. Lo único que de verdad es propiedad de cada persona.</p>
+        <p class="layer-where">index.html · carpetas de medios</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-n">04</div>
+      <div>
+        <p class="layer-name">Funciones <span class="chip wait">Se reconecta</span></p>
+        <p class="layer-desc">Formulario, WhatsApp, reservas, analítica. La mecánica es la misma; solo cambian los datos de destino.</p>
+        <p class="layer-where">js/main.js · enlaces del HTML</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="layer-n">05</div>
+      <div>
+        <p class="layer-name">Publicación <span class="chip wait">Nueva cada vez</span></p>
+        <p class="layer-desc">Dominio y alojamiento. Cada web necesita el suyo.</p>
+        <p class="layer-where">Netlify · GitHub Pages · el registrador del dominio</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p class="callout-title">Por qué importa</p>
+    <p>Hacer la primera web cuesta el trabajo entero. Hacer la segunda, con esta base, cuesta las capas 2, 3 y 4 — y la mayor parte de ese trabajo <strong>no lo haces tú, lo aporta la persona</strong> en forma de textos, voz y datos.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="anatomia">
+  <h2><span class="n">02</span> Anatomía de la página</h2>
+
+  <p>Las diez secciones, y qué material pide cada una. Esta tabla es la que usarás para pedirle contenido a alguien.</p>
+
+  <div class="scroll-x">
+  <table>
+    <thead><tr><th>#</th><th>Sección</th><th>Qué material pide</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Portada</td><td>Nombre, titular, subtítulo, dos botones, el símbolo</td></tr>
+      <tr><td>2</td><td>Un espacio para volver a escucharte</td><td>Tres párrafos: qué es el espacio y desde dónde se acompaña</td></tr>
+      <tr><td>3</td><td>El símbolo</td><td>La narrativa del logo — de dónde sale y qué significa</td></tr>
+      <tr><td>4</td><td>Acompañamiento integral</td><td>Seis servicios: nombre, descripción, beneficio, botón</td></tr>
+      <tr><td>5</td><td>Escucha antes de decidir</td><td>Tres audios: título, duración, intención</td></tr>
+      <tr><td>6</td><td>Ver, escuchar y comprender</td><td>Tres vídeos: título, descripción, miniatura</td></tr>
+      <tr><td>7</td><td>El camino de trabajo</td><td>Cuatro pasos, cada uno con su lado emocional y su lado práctico</td></tr>
+      <tr><td>8</td><td>Presencia y responsabilidad</td><td>Los avisos éticos y los límites del acompañamiento</td></tr>
+      <tr><td>9</td><td>Sobre mí</td><td>Biografía, formación, experiencia, modalidad, foto o vídeo</td></tr>
+      <tr><td>10</td><td>Contacto</td><td>WhatsApp, email, formulario, aviso de privacidad</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p class="callout-title">El apartado 8 no se toca a la ligera</p>
+    <p>Los textos éticos —la hipnosis como atención focalizada y no como pérdida de control, la terapia regresiva sin afirmar verdades históricas, la IA como apoyo y nunca como sustituta, y que nada de esto sustituye atención médica o psicológica— son los que <strong>hacen que la web se pueda defender</strong>. Al adaptarla para otra persona, se revisan pero no se eliminan.</p>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="proceso">
+  <h2><span class="n">03</span> El proceso, por fases</h2>
+
+  <p>Esto es lo que hemos hecho y el orden en que se repite. Cada fase termina en algo que se puede ver.</p>
+
+  <h3>Fase 1 · Definir la voz antes que el diseño</h3>
+  <p>Antes de una sola línea de código: quién es, qué ofrece, cómo habla, qué palabras están prohibidas. En tu caso eso fue el documento de marca — paleta, símbolos, tono, enfoque ético y los textos definitivos de las diez secciones. <strong>Cuando este documento existe, la web se construye sola.</strong> Cuando no existe, se dan vueltas.</p>
+
+  <h3>Fase 2 · Estructura y contenido real</h3>
+  <p>Se monta el HTML con los textos definitivos desde el primer momento — nunca con relleno. Ver el texto real en su sitio es lo que enseña si una sección sobra o falta.</p>
+
+  <h3>Fase 3 · Identidad visual</h3>
+  <p>Paleta como variables, tipografías, y el símbolo dibujado en SVG (no una imagen: código, para que se anime y no pese). Aquí nacieron el cosmograma, el ojo, el horizonte y las trece marcas alrededor del iris.</p>
+
+  <h3>Fase 4 · Movimiento</h3>
+  <p>Respiración del símbolo, pulso de luz, ondas de sonido, campo de estrellas, aparición de secciones al bajar. Lento y sutil, coherente con lo que se ofrece.</p>
+
+  <h3>Fase 5 · Funciones</h3>
+  <p>Menú móvil, reproductores, validación del formulario, avisos. Aquí es donde la web deja de ser una imagen y empieza a responder.</p>
+
+  <h3>Fase 6 · Comprobación real</h3>
+  <p>Abrirla en un navegador de verdad, en escritorio y en móvil, y tocar todo. Así apareció y se corrigió que los enlaces del menú dejaban el título tapado por la cabecera, y que si el JavaScript fallaba la página se quedaba en blanco.</p>
+
+  <h3>Fase 7 · Medios reales</h3>
+  <p>Los audios y los vídeos. <span class="chip you">Lo aportas tú</span> — es la única fase que no se puede acelerar con nada.</p>
+
+  <h3>Fase 8 · Publicación</h3>
+  <p>Dominio, alojamiento y que el formulario llegue de verdad a un correo.</p>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="pendiente">
+  <h2><span class="n">04</span> Qué falta hoy</h2>
+
+  <p>Marca lo que vayas cerrando. Se guarda en este dispositivo.</p>
+
+  <h3><span class="chip you">Lo aportas tú</span></h3>
+  <ul class="check" data-check-group="tu">
+    <li><label><input type="checkbox" data-k="t1"><span class="check-text">Tu nombre completo tal como quieres que aparezca</span></label></li>
+    <li><label><input type="checkbox" data-k="t2"><span class="check-text">Formación, experiencia y modalidad<em>Los tres huecos de la sección "Sobre mí"</em></span></label></li>
+    <li><label><input type="checkbox" data-k="t3"><span class="check-text">Número de WhatsApp con prefijo internacional</span></label></li>
+    <li><label><input type="checkbox" data-k="t4"><span class="check-text">Correo de contacto</span></label></li>
+    <li><label><input type="checkbox" data-k="t5"><span class="check-text">Enlaces a redes sociales</span></label></li>
+    <li><label><input type="checkbox" data-k="t6"><span class="check-text">Los tres audios<em>Ya grabados con tu voz — falta traerlos a este repositorio</em></span></label></li>
+    <li><label><input type="checkbox" data-k="t7"><span class="check-text">Los tres vídeos<em>Grabados con el móvil sirven perfectamente</em></span></label></li>
+    <li><label><input type="checkbox" data-k="t8"><span class="check-text">Una foto tuya, si quieres que aparezca</span></label></li>
+    <li><label><input type="checkbox" data-k="t9"><span class="check-text">Decidir el dominio</span></label></li>
+  </ul>
+
+  <h3><span class="chip wait">Lo hago yo</span></h3>
+  <ul class="check" data-check-group="yo">
+    <li><label><input type="checkbox" data-k="y1"><span class="check-text">Consolidar las dos versiones en una<em>Paso cero: sin esto, todo lo demás se duplica</em></span></label></li>
+    <li><label><input type="checkbox" data-k="y2"><span class="check-text">Reproductores de audio reales<em>Que la onda reaccione a tu voz de verdad, no simulada</em></span></label></li>
+    <li><label><input type="checkbox" data-k="y3"><span class="check-text">Huecos de vídeo listos para recibir archivos</span></label></li>
+    <li><label><input type="checkbox" data-k="y4"><span class="check-text">Formulario que llegue a tu correo<em>Sin servidor y gratis</em></span></label></li>
+    <li><label><input type="checkbox" data-k="y5"><span class="check-text">WhatsApp con mensaje ya escrito</span></label></li>
+    <li><label><input type="checkbox" data-k="y6"><span class="check-text">Publicar con dominio propio</span></label></li>
+    <li><label><input type="checkbox" data-k="y7"><span class="check-text">Archivo de marca compartido entre tus tres líneas</span></label></li>
+  </ul>
+
+  <h3><span class="chip ok">Ya hecho</span></h3>
+  <ul class="plain">
+    <li>Las diez secciones con los textos definitivos y el enfoque ético</li>
+    <li>El cosmograma en SVG con las trece marcas ocultas</li>
+    <li>Paleta, tipografías y versión móvil</li>
+    <li>Animaciones de respiración, pulso, ondas y estrellas</li>
+    <li>Validación del formulario con sus mensajes</li>
+    <li>SEO básico: título, descripción, palabras clave, redes</li>
+    <li>Comprobado en navegador real, escritorio y móvil</li>
+  </ul>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="ficha">
+  <h2><span class="n">05</span> Ficha de encargo</h2>
+
+  <p>Esto es lo que hay que reunir para adaptar la base a otra persona del mismo rubro. No es un cuestionario de ventas: es la lista de materiales, como la de una obra.</p>
+
+  <div class="scroll-x">
+  <table>
+    <thead><tr><th>Bloque</th><th>Qué se necesita</th><th>Si no lo tiene</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Identidad</td>
+        <td>Nombre del proyecto · tres palabras que describan el tono · logo o símbolo si existe</td>
+        <td>Se propone y elige entre opciones</td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td>Paleta de marca, si la tiene</td>
+        <td>Se proponen dos o tres direcciones y elige viendo</td>
+      </tr>
+      <tr>
+        <td>Servicios</td>
+        <td>Hasta seis: nombre, qué es, qué aporta</td>
+        <td>Con menos también funciona — la rejilla se ajusta</td>
+      </tr>
+      <tr>
+        <td>Textos</td>
+        <td>Quién es, cómo acompaña, formación, experiencia, modalidad</td>
+        <td>Se redactan a partir de una conversación grabada</td>
+      </tr>
+      <tr>
+        <td>Audios</td>
+        <td>Tres piezas: bienvenida, experiencia breve, explicación</td>
+        <td>Se puede empezar con uno solo</td>
+      </tr>
+      <tr>
+        <td>Vídeos</td>
+        <td>Tres: presentación, explicación, enfoque</td>
+        <td>Se publica sin ellos y se añaden después</td>
+      </tr>
+      <tr>
+        <td>Contacto</td>
+        <td>WhatsApp, correo, redes, enlace de reservas</td>
+        <td>Imprescindible — sin esto la web no cierra nada</td>
+      </tr>
+      <tr>
+        <td>Ética</td>
+        <td>Sus títulos y lo que sí y no afirma sobre su trabajo</td>
+        <td>Se parte de la base de este proyecto y se ajusta</td>
+      </tr>
+      <tr>
+        <td>Publicación</td>
+        <td>Dominio deseado y a nombre de quién va</td>
+        <td>Se registra en el momento</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <p class="callout-title">El orden que funciona</p>
+    <p>Primero contacto y textos, después audios, y los vídeos al final. Así la web <strong>se publica antes de estar completa</strong> y ya empieza a servir mientras se termina. Esperar a tenerlo todo es lo que hace que una web tarde meses.</p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="ampliaciones">
+  <h2><span class="n">06</span> Menú de ampliaciones</h2>
+
+  <p>Todo esto es construible sobre lo que ya hay. No es una lista de deseos: es un menú del que se pide.</p>
+
+  <h3>Movimiento y atmósfera</h3>
+  <ul class="plain">
+    <li><strong>Fondo cósmico generativo</strong> — un cielo real dibujado por el navegador (nebulosa, partículas, humo) que reacciona al dedo o al ratón, en lugar de un degradado fijo</li>
+    <li><strong>Scroll narrativo</strong> — el horizonte se transforma de atardecer a amanecer conforme bajas: el símbolo de la marca, contado con el propio movimiento</li>
+    <li><strong>Revelado de texto</strong> palabra a palabra, transiciones entre secciones, cursor propio, botones que responden al acercarse</li>
+  </ul>
+
+  <h3>Sonido</h3>
+  <ul class="plain">
+    <li><strong>Onda de sonido real</strong> reaccionando a tu voz mientras suena — no la animación decorativa de ahora</li>
+    <li><strong>Biblioteca de audios</strong> con filtros por duración o intención</li>
+    <li><strong>Audio gratuito a cambio del correo</strong> — la forma más limpia de construir una lista de personas interesadas</li>
+    <li><strong>Reproductor persistente</strong> que sigue sonando mientras se navega</li>
+  </ul>
+
+  <h3>Vídeo</h3>
+  <ul class="plain">
+    <li>Vídeo de fondo en la portada, en silencio y en bucle</li>
+    <li>Galería vertical tipo reel, dentro de la web y sin depender de redes</li>
+    <li>Miniaturas que se reproducen solas al pasar por encima</li>
+  </ul>
+
+  <h3>Funciones que cierran</h3>
+  <ul class="plain">
+    <li><strong>Reserva de sesión</strong> con calendario y confirmación automática</li>
+    <li><strong>Cobro</strong> de sesiones o cursos</li>
+    <li><strong>Boletín</strong> y secuencia de correos</li>
+    <li><strong>Dos idiomas</strong> — con España y Chile en la misma marca, tiene sentido</li>
+    <li><strong>Analítica</strong>: qué secciones se leen, dónde se abandona, qué audio se escucha entero</li>
+  </ul>
+
+  <h3>Inteligencia artificial dentro de la web</h3>
+  <ul class="plain">
+    <li><strong>Asistente que responde dudas</strong> sobre qué es la hipnosis, con tus propios textos y tus límites éticos — no un chatbot genérico</li>
+    <li><strong>Audios personalizados</strong> generados a partir de lo que la persona cuenta en el formulario</li>
+    <li><strong>Traducción</strong> de todos los contenidos manteniendo el tono</li>
+  </ul>
+
+  <div class="callout warn">
+    <p class="callout-title">Lo que cuesta cada cosa</p>
+    <p>El alojamiento de una web así es <strong>gratis</strong>. El dominio ronda los 12 € al año. Formularios, reservas y analítica tienen plan gratuito suficiente. Lo que sí cuesta dinero real es el cobro con pasarela (comisión por venta) y un área privada de alumnos, que ya es una plataforma y no una web.</p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="unificar">
+  <h2><span class="n">07</span> Unificar sin duplicar</h2>
+
+  <p>Tienes una empresa, <strong>Sinergia Holística</strong>, con tres líneas: hipnosis, cosmetología e IA. Tu correo, tu WhatsApp y tus redes son los mismos en las tres. Hoy están escritos a mano en cada web, y eso significa que el día que cambies de número tienes que acordarte de tocar tres sitios.</p>
+
+  <div class="callout key">
+    <p class="callout-title">La regla</p>
+    <p>La fuente de verdad no puede ser la memoria de una conversación. <strong>Tiene que ser un archivo.</strong> Un archivo se lee siempre igual, no se olvida entre sesiones, y funciona con cualquier herramienta que uses mañana.</p>
+  </div>
+
+  <h3>La estructura que propongo</h3>
+  <p>Un solo repositorio para toda la empresa, con una carpeta de marca compartida y una carpeta por línea de negocio:</p>
+
+<pre><code><span class="c">sinergia-holistica/</span>
+  <span class="c">marca/</span>
+    marca.json        <span class="d">← correo, WhatsApp, redes, avisos legales</span>
+    tokens.css        <span class="d">← paleta base y tipografías comunes</span>
+    cosmograma.svg    <span class="d">← el símbolo</span>
+  <span class="c">hipnosis/</span>          <span class="d">← esta web</span>
+  <span class="c">cosmetologia/</span>      <span class="d">← la que hiciste en el otro chat</span>
+  <span class="c">ia/</span>                <span class="d">← la tercera línea, cuando toque</span>
+  <span class="c">metodo/</span>            <span class="d">← este documento</span>
+</code></pre>
+
+  <p>Cada web lee <code>marca.json</code> para sus datos de contacto. Cambias el número una vez y las tres webs quedan actualizadas. Cada línea conserva su propia paleta y su propio carácter — <strong>unificado no es idéntico</strong>: es que lo común esté escrito una sola vez.</p>
+
+  <h3>Qué es compartido y qué es propio</h3>
+  <div class="scroll-x">
+  <table>
+    <thead><tr><th>Compartido entre las tres</th><th>Propio de cada línea</th></tr></thead>
+    <tbody>
+      <tr><td>Correo, WhatsApp, redes</td><td>Paleta y ambiente visual</td></tr>
+      <tr><td>Nombre de empresa y país</td><td>Nombre y titular de la línea</td></tr>
+      <tr><td>Avisos legales y de privacidad</td><td>Servicios y textos</td></tr>
+      <tr><td>El símbolo base y las tipografías</td><td>Audios, vídeos y fotos</td></tr>
+      <tr><td>La estructura de las secciones</td><td>Dominio propio</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p class="callout-title">Qué hace falta para montarlo</p>
+    <p>Traer aquí los archivos de la web de cosmetología. Yo no puedo verlos: no tengo acceso a tus otras conversaciones ni a tu ordenador — solo a este repositorio.</p>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="herramientas">
+  <h2><span class="n">08</span> Las herramientas, en cristiano</h2>
+
+  <p>Preguntabas qué es cada cosa y si se comunican entre ellas. Lo esencial:</p>
+
+  <div class="scroll-x">
+  <table>
+    <thead><tr><th>Herramienta</th><th>Para qué sirve</th><th>Recuerda entre sesiones</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Claude Code<br><span class="chip ok">Aquí estamos</span></td>
+        <td>Trabaja sobre archivos y repositorios reales, con control de versiones. Es lo apropiado para el código de las webs.</td>
+        <td>Sí — porque lo guardado son archivos, no conversación</td>
+      </tr>
+      <tr>
+        <td>Chat de Claude</td>
+        <td>Conversar, redactar, decidir. Es donde nacieron los textos de marca.</td>
+        <td>Cada conversación empieza limpia salvo que uses un Proyecto</td>
+      </tr>
+      <tr>
+        <td>Proyectos</td>
+        <td>Una carpeta de conversaciones que comparten instrucciones y archivos comunes.</td>
+        <td>Sí, dentro del mismo Proyecto</td>
+      </tr>
+      <tr>
+        <td>Diseño / lienzo</td>
+        <td>Maquetar visualmente y mover elementos a mano.</td>
+        <td>No es donde vive el código final</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout key">
+    <p class="callout-title">La respuesta corta a tu pregunta</p>
+    <p>Es verdad que las conversaciones sueltas no se hablan entre sí, y no conviene pelearse con eso. <strong>El repositorio es el cerebro del proyecto.</strong> Mientras el trabajo esté en archivos, cualquier sesión de cualquier herramienta puede retomarlo leyendo lo que hay — sin depender de que nadie recuerde nada.</p>
+  </div>
+
+  <p>De ahí el valor de este documento: no es un resumen bonito, es <strong>la memoria del proyecto en un archivo</strong>. Vive en <code>docs/metodo.html</code> dentro del repositorio y se actualiza conforme avanzamos.</p>
+
+  <h3>Dos conectores pendientes</h3>
+  <p>Los conectores de voz e imagen aparecen sin autorizar en esta sesión. Si en algún momento quieres generar audios o imágenes desde aquí, hay que autorizarlos en tus ajustes de conectores de claude.ai. Para tus tres audios no hace falta: ya están grabados con tu voz, que es mejor.</p>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="siguiente">
+  <h2><span class="n">09</span> Lo siguiente, en orden</h2>
+
+  <ul class="check" data-check-group="orden">
+    <li><label><input type="checkbox" data-k="o1"><span class="check-text"><strong>Consolidar.</strong> Traer aquí tu versión con los audios y dejar una sola web viva.<em>Sin esto, cada mejora hay que hacerla dos veces</em></span></label></li>
+    <li><label><input type="checkbox" data-k="o2"><span class="check-text"><strong>Reproductores de verdad.</strong> Que tus audios suenen y la onda reaccione a tu voz.</span></label></li>
+    <li><label><input type="checkbox" data-k="o3"><span class="check-text"><strong>Tus datos.</strong> Cerrar los huecos de nombre, contacto y redes.</span></label></li>
+    <li><label><input type="checkbox" data-k="o4"><span class="check-text"><strong>Publicar.</strong> Dominio propio y formulario que llegue a tu correo.<em>A partir de aquí la web ya trabaja</em></span></label></li>
+    <li><label><input type="checkbox" data-k="o5"><span class="check-text"><strong>Vídeos.</strong> Cuando los tengas, entran en su hueco.</span></label></li>
+    <li><label><input type="checkbox" data-k="o6"><span class="check-text"><strong>Ampliaciones.</strong> Del menú del apartado 06, lo que tú elijas.</span></label></li>
+    <li><label><input type="checkbox" data-k="o7"><span class="check-text"><strong>Unificar las tres líneas</strong> bajo la carpeta de marca compartida.</span></label></li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-title">Lo que se enseña</p>
+    <p>Al final de los cuatro primeros puntos tienes tu web publicada, con tu voz sonando, en un dominio tuyo. Eso es lo que se abre en un móvil y habla solo.</p>
+  </div>
+</section>
+
+<footer class="end">
+  <p>Método Sinergia · documento vivo · se actualiza en <code>docs/metodo.html</code></p>
+  <p>Sinergia Holística · Chile · Frunch_MV13 · MW13</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY = 'metodo-sinergia-check';
+  var store = {};
+  try{ store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }catch(e){ store = {}; }
+
+  var boxes = document.querySelectorAll('.check input[type=checkbox]');
+  boxes.forEach(function(box){
+    var k = box.getAttribute('data-k');
+    if(store[k]) box.checked = true;
+    box.addEventListener('change', function(){
+      store[k] = box.checked;
+      try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){}
+    });
+  });
+})();
+</script>
